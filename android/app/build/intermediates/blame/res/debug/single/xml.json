@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\www\\reactNative\\hello\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "C:\\www\\reactNative\\hello\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.45.0\\res\\xml\\preferences.xml"
+    },
+    {
+        "merged": "C:\\www\\react-native\\hello2\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "C:\\www\\react-native\\hello2\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.45.0\\res\\xml\\preferences.xml"
+    }
+]
