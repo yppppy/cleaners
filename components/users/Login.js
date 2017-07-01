@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Storage from '../../common/Storage'
 import ManagerIndex from '../manager/ManagerIndex'
+import WaiterIndex from '../waiter/WaiterIndex'
+import {postHttp} from '../../common/HttpBean'
 import {
   StyleSheet,
   Text,
@@ -17,22 +19,20 @@ export default class Login extends Component {
 	
 	async login(){
 		let formBody = 'email='+this.state.email+'&pwd='+this.state.pwd;
-		var fetchOptions = {
-			method: 'POST',
-			headers: {
-			  'Accept': 'application/json',
-			  'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body:formBody
-	     };
-	     //alert("DDDDDDDDDDD");
-	     let response = await fetch('http://192.168.1.145:3000/shop/mobileLogin',fetchOptions);
-	    //  alert("DddddddddddDD");
-	    let text = await response.text();
-	    alert(text);
-	    if(text==1){	//登陆成功跳转
+	    let text = await postHttp('shop/mobileLogin',formBody);
+
+	    let arr = text.split(',');
+	    if(arr[0]==1){	//登陆成功跳转
 	    	let index = Storage.getInstance().getProp('index');
-			index.setState({body:<ManagerIndex/>});
+	    	if(arr[2]==0){
+	    		index.setState({body:<ManagerIndex shopname={arr[1]} shoprole={arr[2]}/>});
+	    	}else if(arr[2]==1){  //服务员
+	    		alert("1");
+	    		index.setState({body:<WaiterIndex shopname={arr[1]} shoprole={arr[2]}/>});
+	    	}else if(arr[2]==2){
+	    		//后厨
+	    	}
+			
 	    }else{
 	    	alert('账号/密码错误');
 	    }
@@ -57,7 +57,7 @@ export default class Login extends Component {
 		          		<View style={[Layout.col1]}><Text>密码:</Text></View>
 		          		<View style={[Layout.col2]}>
 		          			<TextInput style={[Layout.input]} placeholder='请输入密码'
-		          				 secureTextEntry={true} onChangeText={(pwd) => this.setState({pwd})}
+		          				onChangeText={(pwd) => this.setState({pwd})}
 		          			/>
 		          		</View>
 		          	</View>

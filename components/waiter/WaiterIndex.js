@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Head from '../public/Head'
-import Main from './Main'
+import WaiterMenu from './WaiterMenu'
 import Footer from './Footer'
 import Storage from '../../common/Storage'
 
@@ -18,13 +18,12 @@ let screenHeight=Dimensions.get('window').height;
 export default class Index extends Component {
   constructor(props, context){
     super(props,context);
+    let shoprole = this.props.shoprole;
     this.state={};
-    this.state.body=<Main name='李四'/>;
+    this.state.body=<WaiterMenu/>;
     //this.changeBody.bind(this);
   }
-  helloFun(param){
-    Alert.alert(param);
-  }
+  
   changeBody(tag){
       this.setState({body:tag});
   }

@@ -10,7 +10,7 @@ import {
   Alert
 } from 'react-native';
 
-import Head from '../public/Head'
+import Head from './Head'
 
 const onButtonPress = (helloFun) => {
   //Alert.alert(thisa);
